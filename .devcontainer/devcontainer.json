@@ -1,0 +1,26 @@
+{
+  "name": "ESP-IDF DevContainer",
+  "image": "espressif/idf:release-v5.5",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind",
+  // mount the vscode extensions to the target path,
+  // and then they don't need to install again when rebuilding the container
+  "mounts": [
+    "source=extensionCache,target=/root/.vscode-server/extensions,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "espressif.esp-idf-extension",
+        "ms-vscode.cpptools"
+      ],
+      "settings": {
+        "idf.espIdfPath": "/opt/esp/idf",
+        "idf.toolsPath": "/opt/esp",
+        "idf.customExtraVars": {
+          "IDF_PATH": "/opt/esp/idf"
+        },
+        "idf.gitPath": "/usr/bin/git"
+      }
+    }
+  }
+}
