@@ -5,8 +5,12 @@
   // mount the vscode extensions to the target path,
   // and then they don't need to install again when rebuilding the container
   "mounts": [
-    "source=extensionCache,target=/root/.vscode-server/extensions,type=volume"
+    "source=extensionCache,target=/root/.vscode-server/extensions,type=volume",
+    "source=${localEnv:HOME}/libs/arduino-libs,target=/home/ubuntu/libs/arduino-libs,type=bind"
   ],
+  "containerEnv": {
+    "EXTRA_COMPONENT_DIRS": "/home/ubuntu/libs/arduino-libs"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
